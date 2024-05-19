@@ -94,4 +94,13 @@ sudo systemctl status httpd
 # Get the server’s IP address
 hostname -I
 # Enter the IP into the browser’s address bar:
-http://<server_ip>
+http://<server_IP>
+
+# Add the necessary inbound rules to the CentOS' FirewallID
+
+# Set HTTP and HTTPS to be accessible from everywhere
+firewall-cmd --permanent --zone=internal --add-service=ssh
+# Restricting SSH access only through the VPN
+firewall-cmd --permanent --zone=internal --add-source=<VPN_public_IP>/32
+# If your public IP on the VPN is different from the <VPN_public_IP>, add it too
+firewall-cmd --permanent --zone=public --remove-service=ssh
