@@ -119,3 +119,10 @@ openssl x509 -req -days 365 -in ca.csr -signkey ca.key -out ca.crt
 cp ca.crt /etc/pki/tls/certs/
 cp ca.key /etc/pki/tls/private/
 cp ca.csr /etc/pki/tls/private/
+
+# Add the necessary rules to the Apache server 
+
+# Configure Apache to serve the certificate over HTTPS and redirect HTTP to HTTPS
+nano /etc/httpd/conf.d/ssl.conf
+# Retart the service
+systemctl restart httpd
