@@ -104,3 +104,18 @@ firewall-cmd --permanent --zone=internal --add-service=ssh
 firewall-cmd --permanent --zone=internal --add-source=<VPN_public_IP>/32
 # If your public IP on the VPN is different from the <VPN_public_IP>, add it too
 firewall-cmd --permanent --zone=public --remove-service=ssh
+
+# Install CA, CSR and SSL certificates
+
+# Install OpenSSL
+yum install -y openssl
+# Generate a private key with 2048 bit encryption
+openssl genrsa -out ca.key 2048 
+# Generate a certificate signing request (CSR)
+openssl req -new -key ca.key -out ca.csr
+# Generate a self-signed certificate of X509 type, which remains valid for 365 keys
+openssl x509 -req -days 365 -in ca.csr -signkey ca.key -out ca.crt
+# Copy the files to the necessary directories
+cp ca.crt /etc/pki/tls/certs/
+cp ca.key /etc/pki/tls/private/
+cp ca.csr /etc/pki/tls/private/
