@@ -76,3 +76,22 @@ usermod -G myGroup teacher
 # Set read-only permissions for the user
 chmod -R u=rwx g=r /home
 chmod -R u=rwx g=r /root
+
+# Deploy Apache web server
+
+# Install Apache
+sudo yum install httpd
+# Permit HTTP/HTTPS traffic into the server
+firewall-cmd --permanent --zone=public --add-service=http
+firewall-cmd --permanent --zone=public --add-service=https
+firewall-cmd --reload
+# Check open ports
+firewall-cmd --permanent --zone=public --list-services
+# Start the service
+sudo systemctl start httpd
+# Verify that the service is running
+sudo systemctl status httpd
+# Get the server’s IP address
+hostname -I
+# Enter the IP into the browser’s address bar:
+http://<server_ip>
