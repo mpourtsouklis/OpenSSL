@@ -33,7 +33,7 @@ nano authorized_keys
 # Select Open
 # You should not get asked for your password, but instead log straight in
 
-# Add new user ("teacher") and its given SSH public key.
+# Add new user and its given SSH public key
 
 # Add new user
 adduser teacher
@@ -51,7 +51,7 @@ cd .ssh
 # Open or create the default file OpenSSH looks for public keys
 nano authorized_keys
 # Paste the public key into the file !Make sure the key goes on a single line
-# At the end of the public key, type user's username ("teacher")
+# At the end of the public key, type user's username
 # Exit file
 # Save modified buffer
 # Press Enter
@@ -66,3 +66,13 @@ PubkeyAuthentication yes
 PasswordAuthentication no
 # Restart the SSH service
 systemctl reload sshd
+
+# Manage user's permissions 
+
+# Create a group
+groupadd myGroup
+# Move user to the new group 
+usermod -G myGroup teacher
+# Set read-only permissions for the user
+chmod -R u=rwx g=r /home
+chmod -R u=rwx g=r /root
