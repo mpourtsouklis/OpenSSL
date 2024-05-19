@@ -55,3 +55,14 @@ nano authorized_keys
 # Exit file
 # Save modified buffer
 # Press Enter
+
+# Turn off password authentication
+
+# Open the SSH configuration file
+nano /etc/ssh/sshd_config
+# Check that public key authentication is enabled
+PubkeyAuthentication yes
+# Set the password authentication to no
+PasswordAuthentication no
+# Restart the SSH service
+systemctl reload sshd
