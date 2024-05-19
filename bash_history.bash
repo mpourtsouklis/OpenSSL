@@ -126,3 +126,15 @@ cp ca.csr /etc/pki/tls/private/
 nano /etc/httpd/conf.d/ssl.conf
 # Retart the service
 systemctl restart httpd
+
+# Host a simple login web page
+
+# Change default Apache's welcome page
+nano /etc/httpd/conf.d/welcome.conf
+# Retart the service
+systemctl restart httpd
+# Create index page
+cd /var/www/html/
+nano index.php
+# Retart the service
+systemctl restart httpd
