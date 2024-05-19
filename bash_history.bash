@@ -32,3 +32,26 @@ nano authorized_keys
 # Specify the destination you want to connect to root@server, where server is you server's host name/ IP address
 # Select Open
 # You should not get asked for your password, but instead log straight in
+
+# Add new user ("teacher") and its given SSH public key.
+
+# Add new user
+adduser teacher
+# Set new user's password
+passwd teacher
+teacher
+teacher
+
+# Go to user's home directory
+cd /home/teacher
+# Create a hidden folder to user's home directory
+mkdir .ssh
+# Go to the SSH key directory
+cd .ssh
+# Open or create the default file OpenSSH looks for public keys
+nano authorized_keys
+# Paste the public key into the file !Make sure the key goes on a single line
+# At the end of the public key, type user's username ("teacher")
+# Exit file
+# Save modified buffer
+# Press Enter
